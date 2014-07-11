@@ -1,4 +1,4 @@
-## Arrays and Strings
+t## Arrays and Strings
 ### Definitions
 1. Array
 
