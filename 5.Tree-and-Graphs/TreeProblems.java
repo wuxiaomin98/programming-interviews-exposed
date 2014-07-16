@@ -69,9 +69,14 @@ public class TreeProblems {
     public static void inorderTraversal_iteration(Node root) {
         Stack<Node> stack = new Stack<Node>();
         while (!stack.empty() || root != null) {
-            if (root.left != null) stack.push(current.left);
-            stack.push(root);
-            if (root.right != null) stack.push(current.right);
+            if (root != null) {
+                stack.push(root);
+                root = root.left;
+            } else {
+                root = stack.pop();
+                root.printValue();
+                root = root.right;
+            }
         }
     }
 
@@ -97,7 +102,7 @@ public class TreeProblems {
      * Given a set of integers in an unordered binary tree. Use an array sorting
      * routine to transform the tree into a heap that uses a balanced binary tree.
      */
-    public static Node heapifyBinaryTree(Node root) {
+/*    public static Node heapifyBinaryTree(Node root) {
         int size = traverse(root, 0, null);
         Node[] array = new Node[size];
         traverse(root, 0, array);
@@ -153,7 +158,7 @@ public class TreeProblems {
         array = inorderTraverse(root.right, array, count);
         return array;
     }
-
+*/
     /****************** Test part *********************************************/
     /*     4
      *  2     6
@@ -175,11 +180,13 @@ public class TreeProblems {
 
         out.println("\nInorder: ");
         inorderTraversal_recursion(root);
+        out.println();
+        inorderTraversal_iteration(root);
 
         out.println("\nfindLowestCommonAncestor: 1, 3");
         findLowestCommonAncestor(root, 1, 9).printValue(); //?
 
-        out.println("\nheapifyBinaryTree:");
-        heapifyBinaryTree(root).printValue();
+        //out.println("\nheapifyBinaryTree:");
+        //heapifyBinaryTree(root).printValue();
     }
 }
